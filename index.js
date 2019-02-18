@@ -4,7 +4,7 @@ const hapi = require('hapi')
 
 const server = hapi.server({
     port: process.env.PORT || 4200,
-    host: localhost
+    host: 'localhost'
 })
 
 async function init() {
@@ -12,7 +12,14 @@ async function init() {
         method: 'GET',
         path: '/',
         handler: (req, h) => {
-            return 'Hello world!'
+            return h.response('h mundo').code(200)
+        }
+    })
+    server.route({
+        method: 'GET',
+        path: '/redirect',
+        handler: (req, h) => {
+            return h.redirect('localhost:4200/')
         }
     })
     try {

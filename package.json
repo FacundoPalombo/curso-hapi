@@ -4,12 +4,15 @@
   "description": "'Curso de hapi de platzi'",
   "main": "index.js",
   "dependencies": {
+    "handlebars": "^4.1.0",
     "hapi": "^18.1.0",
     "nodemon": "^1.18.10",
     "standard": "^12.0.1"
   },
   "devDependencies": {},
   "scripts": {
+    "lint": "standard --fix",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Facundo Palombo",
