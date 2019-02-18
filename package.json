@@ -8,12 +8,13 @@
     "hapi": "^18.1.0",
     "inert": "^5.1.2",
     "nodemon": "^1.18.10",
-    "standard": "^12.0.1"
+    "standard": "^12.0.1",
+    "vision": "^5.4.4"
   },
   "devDependencies": {},
   "scripts": {
     "lint": "standard --fix",
-    "dev": "nodemon index.js",
+    "dev": "nodemon --ext js,hbs,html,css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Facundo Palombo",
