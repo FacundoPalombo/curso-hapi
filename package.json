@@ -1,0 +1,17 @@
+{
+  "name": "hapi-curso",
+  "version": "1.0.0",
+  "description": "'Curso de hapi de platzi'",
+  "main": "index.js",
+  "dependencies": {
+    "hapi": "^18.1.0",
+    "nodemon": "^1.18.10",
+    "standard": "^12.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Facundo Palombo",
+  "license": "MIT"
+}
