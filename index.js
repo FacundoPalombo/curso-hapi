@@ -1,10 +1,17 @@
 'use strict'
 
 const hapi = require('hapi')
+const inert = require('inert')
+const path = require('path')
 
 const server = hapi.server({
     port: process.env.PORT || 4200,
-    host: 'localhost'
+    host: 'localhost',
+    routes: {
+        files: {
+            relativeTo: path.join(__dirname, 'public')
+        }
+    }
 })
 
 async function init() {
@@ -12,7 +19,7 @@ async function init() {
         method: 'GET',
         path: '/',
         handler: (req, h) => {
-            return h.response('h mundo').code(200)
+            return h.file('index.html')
         }
     })
     server.route({
@@ -23,6 +30,20 @@ async function init() {
         }
     })
     try {
+        await server.register(inert)
+
+
+        server.route({
+            method: 'GET',
+            path: '/{param*}',
+            handler:  {
+                directory: {
+                    path: '.',
+                    index: ['index.html']
+                }
+            }
+        })
+
         await server.start()
     } catch (error) {
         console.error(error)
