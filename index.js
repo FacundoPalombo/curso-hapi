@@ -28,9 +28,19 @@ async function init() {
     })
     server.route({
         method: 'GET',
-        path: '/redirect',
+        path: '/register',
         handler: (req, h) => {
-            return h.redirect('localhost:4200/')
+            return h.view('register', {
+                title: 'Registro'
+            })
+        }
+    })
+    server.route({
+        method: 'POST',
+        path: '/create-user',
+        handler: (req, h) => {
+            console.log(req.payload)
+            return 'usuario creado'
         }
     })
     try {
