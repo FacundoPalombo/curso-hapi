@@ -17,47 +17,9 @@ const server = hapi.server({
 })
 
 async function init() {
-    server.route({
-        method: 'GET',
-        path: '/',
-        handler: (req, h) => {
-            return h.view('index', {
-                title: 'home'
-            })
-        }
-    })
-    server.route({
-        method: 'GET',
-        path: '/register',
-        handler: (req, h) => {
-            return h.view('register', {
-                title: 'Registro'
-            })
-        }
-    })
-    server.route({
-        method: 'POST',
-        path: '/create-user',
-        handler: (req, h) => {
-            console.log(req.payload)
-            return 'usuario creado'
-        }
-    })
     try {
         await server.register(inert)
         await server.register(vision)
-
-        server.route({
-            method: 'GET',
-            path: '/{param*}',
-            handler:  {
-                directory: {
-                    path: '.',
-                    index: ['index.html']
-                }
-            }
-        })
-
         server.views({
             engines: {
                 hbs: handlebars
