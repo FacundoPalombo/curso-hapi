@@ -5,6 +5,7 @@ const inert = require('inert')
 const path = require('path')
 const handlebars = require('handlebars')
 const vision = require('vision')
+const routes = require('./routes')
 
 const server = hapi.server({
     port: process.env.PORT || 4200,
@@ -29,6 +30,7 @@ async function init() {
             layout: true,
             layoutPath: 'views'
         })
+        server.route(routes)
         await server.start()
     } catch (error) {
         console.error(error)
