@@ -4,6 +4,7 @@
   "description": "'Curso de hapi de platzi'",
   "main": "index.js",
   "dependencies": {
+    "bcrypt": "^3.0.4",
     "firebase-admin": "^7.0.0",
     "handlebars": "^4.1.0",
     "hapi": "^18.1.0",
