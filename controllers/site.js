@@ -36,9 +36,20 @@ function notFound(req, h) {
     layout: 'error-layout'
   }).code(404)
 }
+//---------- Error404 inert -------------//
+function fileNotFound(req, h) {
+  const res = req.response;
+  if(res.isBoom && response.output.statusCode == 404) {
+    return h.view('404', {}, {
+      layout: 'error-layout'
+    }).code(404)
+  }
+  return h.continue
+}
 module.exports = {
   home: home,
   login: login,
   register: register,
-  notFound: notFound
+  notFound: notFound,
+  fileNotFound: fileNotFound
 }
