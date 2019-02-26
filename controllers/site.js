@@ -1,10 +1,18 @@
 'use strict'
+const ask = require('../models').questions
 // -------- Handlers -------- //
 //---------- Home -------------//
-function home(req, h) {
+async function home(req, h) {
+  let data;
+  try {
+    data = await questions.getLast()
+  } catch (error) {
+    console.error(error)
+  }
   return h.view('index', {
     title: 'home',
-    user: req.state.user
+    user: req.state.user,
+    questions: data
   })
 }
 

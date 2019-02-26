@@ -14,7 +14,7 @@ class Questions {
         return question.key
     }
     async getLast (amount) {
-        const query = this.collection.limitToLast(amount).once('value');
+        const query = await this.collection.limitToLast(amount).once('value');
         const data = query.val();
         return data;
     }
