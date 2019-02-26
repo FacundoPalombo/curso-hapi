@@ -44,7 +44,8 @@ async function validateUser(req, h) {
       error: 'Problemas validando el usuario',
     })
   }
-  return h.redirect('/').code(200).state('user', {
+  return h.redirect('/')
+  .state('user', {
     name: result.name,
     email: result.email
   });
