@@ -2,6 +2,7 @@
 const site = require('./controllers/site')
 const user = require('./controllers/user')
 const Joi = require('joi')
+const question = require('./controllers/question')
 module.exports = [
     {
         method: 'GET',
@@ -50,11 +51,31 @@ module.exports = [
     },
     //Logout
     {
-        path: '/logout',
         method: 'GET',
+        path: '/logout',
         handler: user.logout
     },
-
+    //Ask
+    {
+        method: 'GET',
+        path: '/ask',
+        handler: site.ask
+    },
+    
+    {
+        method: 'POST',
+        options: {
+            validate: {
+                payload: {
+                    title: Joi.string().required().min(10),
+                    description: Joi.string().required().min(10)
+                },
+                failAction: user.failValidation
+            }
+        },
+        path: '/create-question',
+        handler: question.createQuestion
+    },
 //--------------- DANGER  Last routes -------------------//
     {
         method: 'GET',

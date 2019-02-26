@@ -39,17 +39,29 @@ function notFound(req, h) {
 //---------- Error404 inert -------------//
 function fileNotFound(req, h) {
   const res = req.response;
-  if(res.isBoom && response.output.statusCode == 404) {
+  if(res.isBoom && res.output.statusCode == 404) {
     return h.view('404', {}, {
       layout: 'error-layout'
     }).code(404)
   }
   return h.continue
 }
+
+//---------- Asks -------------//
+function ask (req, h) {
+  if(!req.state.user) {
+    return h.redirect('/login')
+  }
+  return h.view('ask', {
+    title: 'Crear pregunta',
+    user: req.state.user
+  })
+}
 module.exports = {
   home: home,
   login: login,
   register: register,
   notFound: notFound,
-  fileNotFound: fileNotFound
+  fileNotFound: fileNotFound,
+  ask: ask
 }
