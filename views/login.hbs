@@ -6,6 +6,11 @@
         <div class="card-body">
           <div class="row">
             <div class="col">
+              {{#with error}}
+              <div class="alert alert-danger">
+                <span>{{this}}</span>
+              </div>
+              {{/with}}
               <form method="POST" action="/validate-user">
                 <div class="form-group">
                   <label for="email">Correo</label>

@@ -2,7 +2,7 @@
 
 const users = require('../models/index').users
 const Boom = require('boom')
-
+//Register
 async function createUser(req, h) {
   let result
   try {
@@ -21,10 +21,12 @@ async function createUser(req, h) {
     success: 'Usuario creado exitosamente',
   })
 }
+
+//Logout
 async function logout(req, h) {
   return h.redirect('/login').unstate('user')
 }
-
+//User validation
 async function validateUser(req, h) {
   let result
   try {
@@ -33,7 +35,6 @@ async function validateUser(req, h) {
       return h.view('login', {
         title: 'Login',
         error: 'Email y/o contraseña incorrecta',
-
       })
     }
   } catch (error) {
