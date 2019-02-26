@@ -22,7 +22,8 @@ module.exports = [
                     name: Joi.string().required().min(3),
                     email: Joi.string().email().required(),
                     password: Joi.string().required().min(8)
-                }
+                },
+                failAction: user.failValidation
             }
         },
         path: '/create-user',
@@ -46,6 +47,12 @@ module.exports = [
             }
         },
         handler: user.validateUser
+    },
+    //Logout
+    {
+        path: '/logout',
+        method: 'GET',
+        handler: user.logout
     },
     {
         method: 'GET',
