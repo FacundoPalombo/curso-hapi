@@ -13,7 +13,7 @@ async function createQuestion(req, h) {
             error: 'Problemas creando la pregunta'
         }).code(500).takeover()
     }
-    return h.response("Pregunta creada con el id" + result)
+    return h.response(`Pregunta creada con el ID ${result}`)
 }
 
 module.exports = {

@@ -3,6 +3,7 @@ const site = require('./controllers/site')
 const user = require('./controllers/user')
 const Joi = require('joi')
 const question = require('./controllers/question')
+
 module.exports = [
     {
         method: 'GET',
@@ -63,6 +64,7 @@ module.exports = [
     },
     
     {
+        path: '/create-question',
         method: 'POST',
         options: {
             validate: {
@@ -73,8 +75,12 @@ module.exports = [
                 failAction: user.failValidation
             }
         },
-        path: '/create-question',
         handler: question.createQuestion
+    },
+    {
+        method: 'GET',
+        path: '/question/{id}',
+        handler: site.viewQuestion
     },
 //--------------- DANGER  Last routes -------------------//
     {

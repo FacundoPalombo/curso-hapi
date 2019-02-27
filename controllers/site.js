@@ -1,11 +1,11 @@
 'use strict'
-const ask = require('../models').questions
+const questions = require('../models/index').questions
 // -------- Handlers -------- //
 //---------- Home -------------//
 async function home(req, h) {
   let data;
   try {
-    data = await questions.getLast()
+    data = await questions.getLast(10)
   } catch (error) {
     console.error(error)
   }
@@ -38,6 +38,24 @@ function login(req, h) {
   })
 }
 
+//---------- View Question -------------//
+async function viewQuestion(req, h) {
+  let data;
+  try {
+    data = await questions.getOne(req.params.id);
+    if(!data) {
+      return notFound(req, h);
+    }
+  } catch (error) {
+    console.error(error)
+  }
+  return h.view('question', {
+    title: "Detalles de la pregunta",
+    user: req.state.user,
+    question: data,
+    key: req.params.id
+  })
+}
 //---------- Error404 -------------//
 function notFound(req, h) {
   return h.view('404', {}, {
@@ -71,5 +89,6 @@ module.exports = {
   register: register,
   notFound: notFound,
   fileNotFound: fileNotFound,
-  ask: ask
+  ask: ask,
+  viewQuestion: viewQuestion
 }
