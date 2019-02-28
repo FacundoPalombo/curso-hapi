@@ -62,7 +62,7 @@ module.exports = [
         path: '/ask',
         handler: site.ask
     },
-    
+    //Create Question
     {
         path: '/create-question',
         method: 'POST',
@@ -77,6 +77,7 @@ module.exports = [
         },
         handler: question.createQuestion
     },
+    // View Question
     {
         method: 'GET',
         path: '/question/{id}',
